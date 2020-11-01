@@ -16,10 +16,11 @@ export default function () {
         flexDirection: 'column',
       }}
     >
-      <h2>Landing Page</h2>
+      <h1>Welcome</h1>
+      <h2>CRUD Example Material ui</h2>
 
       <div>
-        <Link to="/home">Home</Link>
+        <Link to="/home">Continuar</Link>
       </div>
     </div>
   )
