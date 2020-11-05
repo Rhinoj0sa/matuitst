@@ -11,9 +11,7 @@ const styles = {
     backgroundImage: `url(${Image})`,
   },
 };
-
 const useStyles = makeStyles(styles);
-
 export default function () {
   const classes = useStyles();
   return (

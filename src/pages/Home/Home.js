@@ -3,6 +3,7 @@ import React from 'react'
 import Scrollbar from 'material-ui-shell/lib/components/Scrollbar/Scrollbar'
 import { useIntl } from 'react-intl'
 import Employees from '../Employees/Employees'
+import Users from '../Users/Users'
 const HomePage = () => {
   const intl = useIntl()
 
@@ -12,7 +13,8 @@ const HomePage = () => {
         style={{ height: '100%', width: '100%', display: 'flex', flex: 1 }}
       >
         {intl.formatMessage({ id: 'home' })}
-        <Employees />
+        <Users />
+        {/* <Employees/> */}
       </Scrollbar>
     </Page>
   )
