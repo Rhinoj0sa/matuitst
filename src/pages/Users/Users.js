@@ -16,6 +16,7 @@ import * as userService from "../../services/userService";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import DeleteForever from "@material-ui/icons/DeleteForever";
 import Popup from "../../components/Popup";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -88,6 +89,12 @@ export default function Users() {
     setOpenPopup(true);
   };
 
+  const insertRandomUser=()=>{
+    const newUser=userService.randomUserFields()
+    userService.insertUser(newUser)
+    setRecords(userService.getAllUsers())
+  }
+
   return (
     <>
       <Paper className={classes.pageContent}>
@@ -105,9 +112,9 @@ export default function Users() {
             onChange={handleSearch}
           />
           <Controls.Button
-            text="Add New"
+            text="Add user"
             variant="outlined"
-            startIcon={<AddIcon />}
+            startIcon={<PersonAddIcon />}
             className={classes.newButton}
             onClick={() => {
               setOpenPopup(true);
@@ -144,20 +151,39 @@ export default function Users() {
                   >
                     <CloseIcon fontSize="small" />
                   </Controls.ActionButton>
-                  <Controls.ActionButton
-                    color="secondary"
-                    onClick={() => {
-                      setRecords(userService.deleteUser(item));
-                    }}
-                  >
-                    <DeleteForever fontSize="small" />
-                  </Controls.ActionButton>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </TblContainer>
-        <TblPagination />
+       
+       
+        <div>
+        <Controls.Button
+            text="Add random user"
+            variant="outlined"
+            startIcon={<PersonAddIcon />}
+            // className={classes.newButton}
+            onClick={() => {
+              insertRandomUser()
+            }}
+            size="small"
+          />
+        <Controls.Button
+            text="Delete all users"
+            variant="outlined"
+            startIcon={<DeleteForever />}
+            // className={classes.newButton}
+            // onClick={() => {
+            //   console.log('click en Delete All shit')
+            // }}
+            onClick={() => {
+              setRecords(userService.deleteAllUsers());
+            }}
+            size="small"
+          />
+        </div>
+         <TblPagination />
       </Paper>
       <Popup
         title="Users Form"

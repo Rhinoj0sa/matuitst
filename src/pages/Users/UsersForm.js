@@ -69,8 +69,12 @@ export default function UsersForm(props) {
       return 'age required'
     } else if (nAge < 18 || nAge > 45) {
       return 'age between 18 to 45'
-    } else
+    } else{
+      if (24 < nAge < 31)  //(nAge>25 && nAge<30)
+       values.relocation=false
+       console.log('reloc false',nAge)
       return ''
+    }
   }
 
   const validatePhone = (phone) => {

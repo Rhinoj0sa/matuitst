@@ -58,23 +58,30 @@ export function deleteUser({
 
 
 export function randomUserFields()  {
+
   const randomName = () => Math.random().toString(36).replace(/[^a-zA-Z]+/g, '').replace(/[aoump]/, '').substr(0, 5) + ' ' + Math.random().toString(36).replace(/[^asdfghjlkopuytem]+/g, '').substr(0, 5) + ' ' + Math.random().toString(36).replace(/[aeoump]+/g, '').replace(/^\w\./, '').substr(0, 5) + (' t' + Math.random().toString(36).replace(/[^a-zA-Z]+/g, '')).substr(0, 5)
+
   const randomAge = () => {
     const r = Math.floor((Math.random() * 45) + 1)
-    if (r < 18) return 18
-    else
-      return r
+   return  r < 18 ?  18 : r
   }
+
   const randomEmail = () => Math.random().toString(36).replace(/[^a-zA-Z]+/g, '').substr(0, 8) + '@' + Math.random().toString(36).replace(/[^a-zA-Z]+/g, '').substr(0, 8) + '.com'
+
   const randomPhone =()=> parseInt(Math.random() * 10000000000).toString()
-  const randomGender = ()=> Math.random() < 0.5 ? 'male' : 'female'
+
   return {
     id: 0,
     name: randomName(),
     email: randomEmail(),
     phone: randomPhone(),
     age: randomAge(),
-    gender: randomGender(),
     relocation: false,
   };
+}
+
+export function addRandomUser(){
+   const newUser=randomUserFields()
+   console.log('newUser',newUser)
+
 }
