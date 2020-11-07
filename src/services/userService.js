@@ -79,9 +79,3 @@ export function randomUserFields()  {
     relocation: false,
   };
 }
-
-export function addRandomUser(){
-   const newUser=randomUserFields()
-   console.log('newUser',newUser)
-
-}

@@ -90,8 +90,7 @@ export default function Users() {
   };
 
   const insertRandomUser=()=>{
-    const newUser=userService.randomUserFields()
-    userService.insertUser(newUser)
+    userService.insertUser(userService.randomUserFields())
     setRecords(userService.getAllUsers())
   }
 
@@ -112,7 +111,7 @@ export default function Users() {
             onChange={handleSearch}
           />
           <Controls.Button
-            text="Add user"
+            text="Add user form"
             variant="outlined"
             startIcon={<PersonAddIcon />}
             className={classes.newButton}
@@ -123,8 +122,6 @@ export default function Users() {
             size="small"
           />
         </Toolbar>
-                
-
         <TblContainer>
           <TblHead />
           <TableBody>
