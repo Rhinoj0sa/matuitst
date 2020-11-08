@@ -20,10 +20,7 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard({email}) {
-  debugger
-  console.log(email)
-  const img='https://www.gravatar.com/avatar/'+ MD5(email)+'?s=200'
-  console.log('img',img)
+  const img='https://www.gravatar.com/avatar/'+ MD5(email)+'?s=200&d=identicon'
   const classes = useStyles();
   return (
     <Card className={classes.media}>
