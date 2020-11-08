@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const headCells = [
-  { id: "fullName", label: "User Name" },
+  { id: "name", label: "User Name" },
   { id: "email", label: "Email Address" },
   { id: "age", label: "Age" },
   // { id: 'department', label: 'Department' },
@@ -69,7 +69,7 @@ export default function Users() {
         if (target.value == "") return items;
         else
           return items.filter((x) =>
-            x.fullName.toLowerCase().includes(target.value)
+            x.name.toLowerCase().includes(target.value)
           );
       },
     });
