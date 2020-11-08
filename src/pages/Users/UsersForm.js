@@ -10,14 +10,26 @@ import {
   useForm,
   Form
 } from "../../components/useForm";
-import * as userService from "../../services/userService";
+ import * as userService from "../../services/userService";
 import PageHeader from "../../components/PageHeader";
 import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
 import {
   TerrainSharp
 } from "@material-ui/icons";
+import MaskedInput from 'react-text-mask';
+// import classes from "*.module.css";
+import { makeStyles } from '@material-ui/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+import Paper from '@material-ui/core/Paper';
+import MediaCard from './../../components/controls/MediaCard'
 
 // const initialFValues = userService.randomUserFields()
+const useStyles = makeStyles(theme => ({
+  input: { margin: theme.spacing(3) }
+}));
+const img ="https://www.gravatar.com/avatar/2e7db13887100750a5e3ae02475430b8?s=200"
 
 const initialFValues = {
   id: 0,
@@ -30,6 +42,9 @@ const initialFValues = {
 };
 
 export default function UsersForm(props) {
+  const classes = useStyles();
+  const [email, setEmail] = useState('');
+
   const {
     addOrEdit,
     recordForEdit
@@ -132,30 +147,45 @@ export default function UsersForm(props) {
       }, [recordForEdit]);
 
 
-      // const TextMaskCustom = (props) => {
-      //   const { inputRef, ...other } = props;
+      const PhoneInput = ({ inputRef, ...props }) => (
+        <MaskedInput
+          {...props}
+          ref={ref => {
+            inputRef(ref ? ref.inputElement : null);
+          }}
+          mask={[
+            '(',
+            /[1-9]/,
+            /\d/,
+            /\d/,
+            ')',
+            ' ',
+            /\d/,
+            /\d/,
+            /\d/,
+            '-',
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/
+          ]}
+          // mask={['+',/\d/,' ','(', /[1-9]/, /\d/, /\d/,')',
+          //   ' ', /\d/, /\d/,' ',/\d/,/\d/,' ',/\d/,/\d/,]}
+          // placeholderChar={'\u2000'}
+        />
+      );
       
-      //   return (
-      //     <MaskedInput
-      //       {...other}
-      //       ref={(ref) => {
-      //         inputRef(ref ? ref.inputElement : null);
-      //       }}
-      //       mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-      //       placeholderChar={'\u2000'}
-      //       showMask
-      //     />
-      //   );
-      // }
-
-
+      // https://www.gravatar.com/avatar/2e7db13887100750a5e3ae02475430b8?s=200
+      // gravatarSrc= 'https://www.gravatar.com/avatar/'+ userService.MD5(email)+'?s=200'
       return (
         <div>
-          <PageHeader
-            title="New Employee"
-            subTitle="Form design with validation"
-            icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
-          />{" "}
+          <Paper >
+          <Card className={classes.media}>
+          <CardActionArea>
+            <MediaCard email={values.email}/>
+        </CardActionArea>
+      </Card>
+      </Paper>
           <Form onSubmit={handleSubmit}>
             <Grid container>
               <Grid item xs={6}>
@@ -181,7 +211,9 @@ export default function UsersForm(props) {
                  name="phone"
                  value={values.phone}
                  onChange={handleInputChange}
-                 error={errors.phone}
+                //  error={errors.phone}
+                //  InputProps={{ inputComponent: PhoneInput }}
+                // className={classes.input}
 
                 />{" "}
                 <Controls.Input
