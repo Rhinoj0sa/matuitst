@@ -4,13 +4,19 @@ import { makeStyles } from "@material-ui/core";
 export function useForm(initialFValues, validateOnChange = false, validate) {
     const [values, setValues] = useState(initialFValues);
     const [errors, setErrors] = useState({});
-    // const [reloc, setReloc] = useState({});
+    
 
     const handleInputChange = e => {
+        debugger
+        let relocationObject= {}
         const { name, value } = e.target
+        if (name == 'age') {
+         relocationObject = (parseInt(value) >25 && parseInt(value) < 30 ) ? { relocation: false } : {}
+        }
         setValues({
             ...values,
-            [name]: value
+            [name]: value,
+            ...relocationObject,
         })
         if (validateOnChange)
             validate({ [name]: value })

@@ -40,13 +40,15 @@ export default function UsersForm(props) {
       // }
     }
     if ("age" in fieldValues) {
-      debugger
-      temp.age = userService.validateAge(fieldValues.age)
-      // if (temp.age.length === 0) relocationObject = ((25 < parseInt(fieldValues.age) < 30)) ? { relocation: false } : {}
+      // debugger
+      // temp.age = userService.validateAge(fieldValues.age)
+      //  if (temp.age.length === 0) relocationObject = ((25 < parseInt(fieldValues.age) < 30)) ? { relocation: false } : {}
     };
     setErrors({
       ...temp,
     });
+    // setReloc(relocationObject)
+    
 
     if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   }
@@ -59,6 +61,7 @@ export default function UsersForm(props) {
     setErrors,
     handleInputChange,
     resetForm,
+      setReloc,
   } = useForm(initialFValues, true, validate);
 
   const handleSubmit = (e) => {

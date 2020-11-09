@@ -2,14 +2,7 @@ import React, { useState } from "react";
 import UsersForm from "./UsersForm";
 
 import {
-  Paper,
-  makeStyles,
-  TableBody,
-  TableRow,
-  TableCell,
-  Toolbar,
-  InputAdornment,
-} from "@material-ui/core";
+   Paper,  makeStyles,  TableBody,  TableRow,  TableCell,  Toolbar,  InputAdornment,} from "@material-ui/core";
 import useTable from "../../components/useTable";
 import * as userService from "../../services/userService";
 import Controls from "../../components/controls/Controls";
@@ -38,7 +31,6 @@ const headCells = [
   { id: "name", label: "User Name" },
   { id: "email", label: "Email Address" },
   { id: "age", label: "Age" },
-  // { id: 'department', label: 'Department' },
   { id: "actions", label: "Actions", disableSorting: true },
 ];
 
@@ -51,6 +43,7 @@ export default function Users() {
       return items;
     },
   });
+
   const [openPopup, setOpenPopup] = useState(false);
 
   const {
