@@ -139,7 +139,6 @@ export default function Users() {
                 >
                   {item.age}
                 </TableCell>
-
                 <TableCell>
                   <Controls.ActionButton
                     color="primary"
@@ -162,7 +161,6 @@ export default function Users() {
             ))}
           </TableBody>
         </TblContainer>
-
         <div>
           <Controls.Button
             text="Add random user"

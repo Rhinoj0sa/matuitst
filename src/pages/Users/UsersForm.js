@@ -1,16 +1,12 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from "../../components/useForm";
 import MaskedInput from "react-text-mask";
-// import classes from "*.module.css";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import MediaCard from "./../../components/controls/MediaCard";
 import * as userService from "../../services/userService";
-// const useStyles = makeStyles((theme) => ({
-//   input: { margin: theme.spacing(3) },
-// }));
 
 const initialFValues = {
   id: 0,
@@ -23,34 +19,18 @@ const initialFValues = {
 
 export default function UsersForm(props) {
 
+const { addOrEdit, recordForEdit } = props;
 
-
-  const { addOrEdit, recordForEdit } = props;
-  
-  const validate = (fieldValues = values) => {
+const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    // let relocationObject = {}
     if ("name" in fieldValues) temp.name = userService.validateName(fieldValues.name);
     if ("email" in fieldValues) temp.email = userService.validateEmail(fieldValues.email);
-    if ("phone" in fieldValues){
-      // debugger 
-      temp.phone = userService.validatePhone(fieldValues.phone);
-      // if (temp.phone === "" ){
-      //    fieldValues.phone= fieldValues.phone.slice(1,2)+fieldValues.phone.slice(4,7)+fieldValues.phone.slice(9,11)+fieldValues.phone.slice(12,14)+fieldValues.phone.slice(15,17);
-      // }
-    }
-    if ("age" in fieldValues) {
-      // debugger
-      // temp.age = userService.validateAge(fieldValues.age)
-      //  if (temp.age.length === 0) relocationObject = ((25 < parseInt(fieldValues.age) < 30)) ? { relocation: false } : {}
-    };
+    if ("phone" in fieldValues) temp.phone = userService.validatePhone(fieldValues.phone);
+    if ("age" in fieldValues) temp.age = userService.validateAge(fieldValues.age);
     setErrors({
       ...temp,
     });
-    // setReloc(relocationObject)
-    
-
-    if (fieldValues == values) return Object.values(temp).every((x) => x == "");
+    if (fieldValues === values) return Object.values(temp).every((x) => x === "");
   }
 
 
@@ -61,7 +41,6 @@ export default function UsersForm(props) {
     setErrors,
     handleInputChange,
     resetForm,
-      setReloc,
   } = useForm(initialFValues, true, validate);
 
   const handleSubmit = (e) => {
@@ -76,7 +55,7 @@ export default function UsersForm(props) {
       setValues({
         ...recordForEdit,
       });
-  }, [recordForEdit, setValues, setErrors]); //recordForEdit, setValues, setErrors
+  }, [recordForEdit, setValues, setErrors]);
 
   const PhoneInput = ({ inputRef, ...props }) => (
     <MaskedInput
@@ -118,15 +97,15 @@ export default function UsersForm(props) {
             </Grid>
             <Grid item xs={6}>
               <Controls.Input
-              label="Phone"
-              name="phone"
-              value={values.phone}
-              onChange={handleInputChange}
-              type="phone"
-              error={errors.phone}
-              InputProps={{ inputComponent: PhoneInput }}
-            />
-             
+                label="Phone"
+                name="phone"
+                value={values.phone}
+                onChange={handleInputChange}
+                type="phone"
+                error={errors.phone}
+                InputProps={{ inputComponent: PhoneInput }}
+              />
+
               <Controls.Input
                 label="Age"
                 name="age"
