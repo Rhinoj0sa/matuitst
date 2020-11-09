@@ -11,7 +11,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     const handleInputChange = e => {
         const { name, value } = e.target
         setValues({
-            ...values,
+            ...values,...reloc,
             [name]: value
         })
         if (validateOnChange)
@@ -31,7 +31,8 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         setErrors,
         handleInputChange,
         resetForm,
-        setReloc
+        setReloc,
+        reloc,
     }
 }
 

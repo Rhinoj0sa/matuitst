@@ -9,13 +9,11 @@ import {
   TableCell,
   Toolbar,
   InputAdornment,
-  Grid,
 } from "@material-ui/core";
 import useTable from "../../components/useTable";
 import * as userService from "../../services/userService";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
-import AddIcon from "@material-ui/icons/Add";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import DeleteForever from "@material-ui/icons/DeleteForever";
 import Popup from "../../components/Popup";
@@ -66,7 +64,7 @@ export default function Users() {
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value == "") return items;
+        if (target.value === "") return items;
         else
           return items.filter((x) =>
             x.name.toLowerCase().includes(target.value)
@@ -76,7 +74,7 @@ export default function Users() {
   };
 
   const addOrEdit = (user, resetForm) => {
-    if (user.id == 0) userService.insertUser(user);
+    if (user.id === 0) userService.insertUser(user);
     else userService.updateUser(user);
     resetForm();
     setRecordForEdit(null);
@@ -192,15 +190,4 @@ export default function Users() {
     </>
   );
 }
-
-{/* <Controls.Button
-text="DeleteAll"
-variant="outlined"
-startIcon={<DeleteForever />}
-className={classes.newButton}
-onClick={() => {
-  setRecords(userService.deleteAllUsers());
-}}
-size="small"
-/> */}
 
