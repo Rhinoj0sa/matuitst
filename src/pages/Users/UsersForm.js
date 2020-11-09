@@ -35,7 +35,12 @@ export default function UsersForm(props) {
     let relocationObject = {}
     if ("name" in fieldValues) temp.name = userService.validateName(fieldValues.name);
     if ("email" in fieldValues) temp.email = userService.validateEmail(fieldValues.email);
-    if ("phone" in fieldValues) temp.phone = userService.validatePhone(fieldValues.phone);
+    if ("phone" in fieldValues){
+      debugger 
+      temp.phone = userService.validatePhone(fieldValues.phone);
+      if (temp.phone === "" ){
+         fieldValues.phone= fieldValues.phone.slice(1,2)+fieldValues.phone.slice(4,7)+fieldValues.phone.slice(9,11)+fieldValues.phone.slice(12,14)+fieldValues.phone.slice(15,17);
+      }}
     if ("age" in fieldValues) {
       debugger
       temp.age = userService.validateAge(fieldValues.age)
@@ -122,7 +127,7 @@ export default function UsersForm(props) {
               onChange={handleInputChange}
               type="phone"
               error={errors.phone}
-              // InputProps={{ inputComponent: PhoneInput }}
+              InputProps={{ inputComponent: PhoneInput }}
             // className={classes.input}
             />
               {/* <TextField
