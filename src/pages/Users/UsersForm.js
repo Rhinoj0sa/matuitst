@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from "../../components/useForm";
 import MaskedInput from "react-text-mask";
 // import classes from "*.module.css";
-import { makeStyles } from "@material-ui/styles";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import MediaCard from "./../../components/controls/MediaCard";
 import * as userService from "../../services/userService";
-import TextField from '@material-ui/core/TextField';
 // const useStyles = makeStyles((theme) => ({
 //   input: { margin: theme.spacing(3) },
 // }));
@@ -26,7 +24,6 @@ const initialFValues = {
 export default function UsersForm(props) {
 
 
-  //  const classes = useStyles();
 
   const { addOrEdit, recordForEdit } = props;
   
@@ -50,7 +47,6 @@ export default function UsersForm(props) {
       ...temp,
     });
     setReloc({...relocationObject})
-    console.log('relocationObject',relocationObject)
 
     if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   }
@@ -128,16 +124,8 @@ export default function UsersForm(props) {
               type="phone"
               error={errors.phone}
               InputProps={{ inputComponent: PhoneInput }}
-            // className={classes.input}
             />
-              {/* <TextField
-                label="Phone"
-                name="phone"
-                // className={classes.input}
-                value={values.phone}
-                onChange={handleInputChange}
-                InputProps={{ inputComponent: PhoneInput }}
-              /> */}
+             
               <Controls.Input
                 label="Age"
                 name="age"

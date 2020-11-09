@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import { makeStyles } from "@material-ui/core";
 
 export function useForm(initialFValues, validateOnChange = false, validate) {
-
-
     const [values, setValues] = useState(initialFValues);
     const [errors, setErrors] = useState({});
-    const [reloc,setReloc]=useState({});
+    const [reloc, setReloc] = useState({});
 
     const handleInputChange = e => {
         const { name, value } = e.target
         setValues({
-            ...values,...reloc,
+            ...values, ...reloc,
             [name]: value
         })
         if (validateOnChange)
@@ -23,7 +21,6 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         setErrors({})
     }
 
- 
     return {
         values,
         setValues,
@@ -35,7 +32,6 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         reloc,
     }
 }
-
 
 const useStyles = makeStyles(theme => ({
     root: {

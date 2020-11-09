@@ -375,7 +375,7 @@ export function validateName(name) {
 export function validateAge(age) {
   if (typeof age == "undefined") return "age required!";
   else if (!/^[0-9\b]+$/.test(age)) return "age required only numbers";
-  else return  (parseInt(age) < 18 || parseInt(age) > 45) ? 'age between 18 to 45':""
+  else return (parseInt(age) < 18 || parseInt(age) > 45) ? 'age between 18 to 45' : ""
 }
 
 // if (!/^[0-9\b]+$/.test(phone)) return "phone required only numbers";
@@ -386,7 +386,7 @@ export function validatePhone(str) {
   if (str.length !== 17)
     return "please enter a valid phone number 10 digits";
   else {
-    let res = str.slice(1,2)+str.slice(4,7)+str.slice(9,11)+str.slice(12,14)+str.slice(15,17);
+    let res = str.slice(1, 2) + str.slice(4, 7) + str.slice(9, 11) + str.slice(12, 14) + str.slice(15, 17);
     if (!/^[0-9\b]+$/.test(res)) return "please enter a valid phone number 10 digits only numbers";
     else return ""
   }

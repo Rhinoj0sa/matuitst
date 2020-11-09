@@ -87,7 +87,7 @@ export default function Users() {
     setOpenPopup(true);
   };
 
-  const insertRandomUser=()=>{
+  const insertRandomUser = () => {
     userService.insertUser(userService.randomUserFields())
     setRecords(userService.getAllUsers())
   }
@@ -151,10 +151,10 @@ export default function Users() {
             ))}
           </TableBody>
         </TblContainer>
-       
-       
+
+
         <div>
-        <Controls.Button
+          <Controls.Button
             text="Add random user"
             variant="outlined"
             startIcon={<PersonAddIcon />}
@@ -164,7 +164,7 @@ export default function Users() {
             }}
             size="small"
           />
-        <Controls.Button
+          <Controls.Button
             text="Delete all users"
             variant="outlined"
             startIcon={<DeleteForever />}
@@ -178,7 +178,7 @@ export default function Users() {
             size="small"
           />
         </div>
-         <TblPagination />
+        <TblPagination />
       </Paper>
       <Popup
         title="Users Form"
