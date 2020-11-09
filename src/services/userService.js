@@ -383,13 +383,11 @@ export function validateAge(age) {
 
 export function validatePhone(str) {
   debugger
-  if (str.length !== 17)
-    return "please enter a valid phone number 10 digits";
-  else {
-    let res = str.slice(1, 2) + str.slice(4, 7) + str.slice(9, 11) + str.slice(12, 14) + str.slice(15, 17);
+  let res=str
+  if (str.length === 17 ) res = str.slice(1, 2) + str.slice(4, 7) + str.slice(9, 11) + str.slice(12, 14) + str.slice(15, 17);
     if (!/^[0-9\b]+$/.test(res)) return "please enter a valid phone number 10 digits only numbers";
     else return ""
-  }
+  
 }
 
 export function validateEmail(email) {

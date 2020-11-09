@@ -29,24 +29,24 @@ export default function UsersForm(props) {
   
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    let relocationObject = {}
+    // let relocationObject = {}
     if ("name" in fieldValues) temp.name = userService.validateName(fieldValues.name);
     if ("email" in fieldValues) temp.email = userService.validateEmail(fieldValues.email);
     if ("phone" in fieldValues){
-      debugger 
+      // debugger 
       temp.phone = userService.validatePhone(fieldValues.phone);
-      if (temp.phone === "" ){
-         fieldValues.phone= fieldValues.phone.slice(1,2)+fieldValues.phone.slice(4,7)+fieldValues.phone.slice(9,11)+fieldValues.phone.slice(12,14)+fieldValues.phone.slice(15,17);
-      }}
+      // if (temp.phone === "" ){
+      //    fieldValues.phone= fieldValues.phone.slice(1,2)+fieldValues.phone.slice(4,7)+fieldValues.phone.slice(9,11)+fieldValues.phone.slice(12,14)+fieldValues.phone.slice(15,17);
+      // }
+    }
     if ("age" in fieldValues) {
       debugger
       temp.age = userService.validateAge(fieldValues.age)
-      if (temp.age.length === 0) relocationObject = ((25 < parseInt(fieldValues.age) < 30)) ? { relocation: false } : {}
+      // if (temp.age.length === 0) relocationObject = ((25 < parseInt(fieldValues.age) < 30)) ? { relocation: false } : {}
     };
     setErrors({
       ...temp,
     });
-    setReloc({...relocationObject})
 
     if (fieldValues == values) return Object.values(temp).every((x) => x == "");
   }
@@ -59,8 +59,6 @@ export default function UsersForm(props) {
     setErrors,
     handleInputChange,
     resetForm,
-    setReloc,
-    reloc,
   } = useForm(initialFValues, true, validate);
 
   const handleSubmit = (e) => {
@@ -73,9 +71,9 @@ export default function UsersForm(props) {
   useEffect(() => {
     if (recordForEdit != null)
       setValues({
-        ...recordForEdit,...reloc,
+        ...recordForEdit,
       });
-  }, [setReloc,recordForEdit, setValues, setErrors]); //recordForEdit, setValues, setErrors
+  }, [recordForEdit, setValues, setErrors]); //recordForEdit, setValues, setErrors
 
   const PhoneInput = ({ inputRef, ...props }) => (
     <MaskedInput
