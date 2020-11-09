@@ -12,7 +12,7 @@ export function insertUser(data) {
 
 export function updateUser(data) {
   let users = getAllUsers();
-  let recordIndex = users.findIndex((x) => x.id == data.id);
+  let recordIndex = users.findIndex((x) => x.id === data.id);
   users[recordIndex] = {
     ...data,
   };

@@ -75,7 +75,7 @@ export default function UsersForm(props) {
       setValues({
         ...recordForEdit,...reloc,
       });
-  }, [recordForEdit]); //recordForEdit, setValues, setErrors
+  }, [setReloc,recordForEdit, setValues, setErrors]); //recordForEdit, setValues, setErrors
 
   const PhoneInput = ({ inputRef, ...props }) => (
     <MaskedInput

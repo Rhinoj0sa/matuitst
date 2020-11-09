@@ -14,7 +14,7 @@ import useTable from "../../components/useTable";
 import * as userService from "../../services/userService";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@material-ui/icons";
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import DeleteForever from "@material-ui/icons/DeleteForever";
 import Popup from "../../components/Popup";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
@@ -88,9 +88,9 @@ export default function Users() {
   };
 
   const insertRandomUser = () => {
-    userService.insertUser(userService.randomUserFields())
-    setRecords(userService.getAllUsers())
-  }
+    userService.insertUser(userService.randomUserFields());
+    setRecords(userService.getAllUsers());
+  };
 
   return (
     <>
@@ -125,9 +125,27 @@ export default function Users() {
           <TableBody>
             {recordsAfterPagingAndSorting().map((item) => (
               <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell>{item.email}</TableCell>
-                <TableCell>{item.age}</TableCell>
+                <TableCell
+                  onClick={() => {
+                    openInPopup(item);
+                  }}
+                >
+                  {item.name}
+                </TableCell>
+                <TableCell
+                  onClick={() => {
+                    openInPopup(item);
+                  }}
+                >
+                  {item.email}
+                </TableCell>
+                <TableCell
+                  onClick={() => {
+                    openInPopup(item);
+                  }}
+                >
+                  {item.age}
+                </TableCell>
 
                 <TableCell>
                   <Controls.ActionButton
@@ -152,7 +170,6 @@ export default function Users() {
           </TableBody>
         </TblContainer>
 
-
         <div>
           <Controls.Button
             text="Add random user"
@@ -160,7 +177,7 @@ export default function Users() {
             startIcon={<PersonAddIcon />}
             // className={classes.newButton}
             onClick={() => {
-              insertRandomUser()
+              insertRandomUser();
             }}
             size="small"
           />
@@ -190,4 +207,3 @@ export default function Users() {
     </>
   );
 }
-

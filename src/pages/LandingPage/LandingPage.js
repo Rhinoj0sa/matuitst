@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Paper from "@material-ui/core/Paper";
 import Image from "./THfqmB.jpg"; // Import using relative path
 import { makeStyles } from "@material-ui/core/styles";
 
