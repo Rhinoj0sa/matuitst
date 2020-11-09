@@ -6,6 +6,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
 
     const [values, setValues] = useState(initialFValues);
     const [errors, setErrors] = useState({});
+    const [reloc,setReloc]=useState({});
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -22,15 +23,15 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
         setErrors({})
     }
 
-
+ 
     return {
         values,
         setValues,
         errors,
         setErrors,
         handleInputChange,
-        resetForm
-
+        resetForm,
+        setReloc
     }
 }
 

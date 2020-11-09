@@ -95,7 +95,7 @@ export function randomUserFields() {
     email: randomEmail(),
     phone: randomPhone(),
     age: randomAge(),
-    relocation: false,
+    relocation: true,
   };
 }
 
@@ -348,7 +348,7 @@ function val3(s) {
 }
 
 export function validateName(name) {
-  if (name.length < 15) return "name required";
+  if (name.length < 15 || name.length > 23) return "name required";
   else {
     const namesArray = name.trim().split(" ");
     if (namesArray.length !== 4) return "name: 4 words";
@@ -375,19 +375,9 @@ export function validateName(name) {
 export function validateAge(age) {
   if (typeof age == "undefined") return "age required!";
   else if (!/^[0-9\b]+$/.test(age)) return "age required only numbers";
-  else {
-    const nAge = parseInt(age);
-    if (nAge < 18 || nAge > 45) {
-      return "age between 18 to 45";
-    } else {
-      if (25 < nAge && nAge < 30) {
-        console.log("reloc false do somethingg here!!!!", nAge);
-        alert("pendiente reloc!!");
-      }
-      return "";
-    }
-  }
+  else return  (parseInt(age) < 18 || parseInt(age) > 45) ? 'age between 18 to 45':""
 }
+
 
 export function validatePhone(phone) {
   if (typeof phone == "undefined") return "phone required!";
