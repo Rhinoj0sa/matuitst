@@ -222,6 +222,7 @@ export function MD5(string) {
     return utftext;
   }
 
+  // eslint-disable-next-line no-array-constructor
   var x = Array();
   var k, AA, BB, CC, DD, a, b, c, d;
   var S11 = 7,

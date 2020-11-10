@@ -9,7 +9,7 @@ export function useForm(initialFValues, validateOnChange = false, validate) {
     debugger;
     let relocationObject = {};
     const { name, value } = e.target;
-    if (name == "age") {
+    if (name === "age") {
       relocationObject =
         parseInt(value) > 25 && parseInt(value) < 30
           ? { relocation: false }
