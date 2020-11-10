@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import UsersForm from "./UsersForm";
 
 import {
-   Paper,  makeStyles,  TableBody,  TableRow,  TableCell,  Toolbar,  InputAdornment,} from "@material-ui/core";
+  Paper,
+  makeStyles,
+  TableBody,
+  TableRow,
+  TableCell,
+  Toolbar,
+  InputAdornment,
+} from "@material-ui/core";
 import useTable from "../../components/useTable";
 import * as userService from "../../services/userService";
 import Controls from "../../components/controls/Controls";
@@ -22,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     width: "75%",
   },
   newButton: {
-     position: "absolute",
+    position: "absolute",
     right: "10px",
   },
 }));

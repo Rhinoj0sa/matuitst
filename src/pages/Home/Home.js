@@ -1,23 +1,21 @@
-import Page from 'material-ui-shell/lib/containers/Page'
-import React from 'react'
-import Scrollbar from 'material-ui-shell/lib/components/Scrollbar/Scrollbar'
-import { useIntl } from 'react-intl'
-import Users from '../Users/Users'
-// import InputMasking from './../Users/InputMasking'
+import Page from "material-ui-shell/lib/containers/Page";
+import React from "react";
+import Scrollbar from "material-ui-shell/lib/components/Scrollbar/Scrollbar";
+import { useIntl } from "react-intl";
+import Users from "../Users/Users";
 
 const HomePage = () => {
-  const intl = useIntl()
+  const intl = useIntl();
 
   return (
-    <Page pageTitle={intl.formatMessage({ id: 'home' })}>
+    <Page pageTitle={intl.formatMessage({ id: "home" })}>
       <Scrollbar
-        style={{ height: '100%', width: '100%', display: 'flex', flex: 1 }}
+        style={{ height: "100%", width: "100%", display: "flex", flex: 1 }}
       >
-        {intl.formatMessage({ id: 'home' })}
-        {/* <InputMasking /> */}
-        <Users/>
+        {intl.formatMessage({ id: "home" })}
+        <Users />
       </Scrollbar>
     </Page>
-  )
-}
-export default HomePage
+  );
+};
+export default HomePage;

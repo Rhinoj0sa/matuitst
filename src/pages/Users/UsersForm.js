@@ -2,13 +2,10 @@ import React, { useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from "../../components/useForm";
-import MaskedInput from "react-text-mask";
 import Card from "@material-ui/core/Card";
 import Paper from "@material-ui/core/Paper";
 import MediaCard from "./../../components/controls/MediaCard";
 import * as userService from "../../services/userService";
-
-
 
 const initialFValues = {
   id: 0,
@@ -19,57 +16,25 @@ const initialFValues = {
   relocation: true,
 };
 
-function PhoneMaskCustom(props) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={[
-        "+",
-        /\d/,
-        " ",
-        "(",
-        /[1-9]/,
-        /\d/,
-        /\d/,
-        ")",
-        " ",
-        /\d/,
-        /\d/,
-        " ",
-        /\d/,
-        /\d/,
-        " ",
-        /\d/,
-        /\d/
-      ]}
-      placeholderChar={"\u2000"}
-      showMask
-    />
-  );
-}
-
-
-
 export default function UsersForm(props) {
+  const { addOrEdit, recordForEdit } = props;
 
-const { addOrEdit, recordForEdit } = props;
-
-const validate = (fieldValues = values) => {
+  const validate = (fieldValues = values) => {
     let temp = { ...errors };
-    if ("name" in fieldValues) temp.name = userService.validateName(fieldValues.name);
-    if ("email" in fieldValues) temp.email = userService.validateEmail(fieldValues.email);
-    if ("phone" in fieldValues) temp.phone = userService.validatePhone(fieldValues.phone);
-    if ("age" in fieldValues) temp.age = userService.validateAge(fieldValues.age);
+    if ("name" in fieldValues)
+      temp.name = userService.validateName(fieldValues.name);
+    if ("email" in fieldValues)
+      temp.email = userService.validateEmail(fieldValues.email);
+    if ("phone" in fieldValues)
+      temp.phone = userService.validatePhone(fieldValues.phone);
+    if ("age" in fieldValues)
+      temp.age = userService.validateAge(fieldValues.age);
     setErrors({
       ...temp,
     });
-    if (fieldValues === values) return Object.values(temp).every((x) => x === "");
-  }
+    if (fieldValues === values)
+      return Object.values(temp).every((x) => x === "");
+  };
 
   const {
     values,
@@ -94,11 +59,10 @@ const validate = (fieldValues = values) => {
       });
   }, [recordForEdit, setValues, setErrors]);
 
-
   return (
     <div>
       <Paper elevation={0}>
-        <Card >
+        <Card>
           <MediaCard email={values.email} />
         </Card>
       </Paper>
@@ -126,12 +90,10 @@ const validate = (fieldValues = values) => {
                 label="Phone"
                 name="phone"
                 value={values.phone}
-                
                 onChange={handleInputChange}
                 error={errors.phone}
-               InputProps={{ inputComponent: PhoneMaskCustom }}
+                InputProps={{ inputComponent: userService.PhoneMaskCustom }}
               />
-
               <Controls.Input
                 label="Age"
                 name="age"
@@ -144,7 +106,6 @@ const validate = (fieldValues = values) => {
                 label="Relocation"
                 value={values.relocation}
                 onChange={handleInputChange}
-              // disabled={true}
               />
               <div>
                 <Controls.Button type="submit" text="Submit" />
