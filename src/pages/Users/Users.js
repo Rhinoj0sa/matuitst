@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     width: "75%",
   },
   newButton: {
-    position: "absolute",
+     position: "absolute",
     right: "10px",
   },
 }));
@@ -176,10 +176,6 @@ export default function Users() {
             text="Delete all users"
             variant="outlined"
             startIcon={<DeleteForever />}
-            // className={classes.newButton}
-            // onClick={() => {
-            //   console.log('click en Delete All shit')
-            // }}
             onClick={() => {
               setRecords(userService.deleteAllUsers());
             }}

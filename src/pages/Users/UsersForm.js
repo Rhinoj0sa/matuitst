@@ -8,6 +8,8 @@ import Paper from "@material-ui/core/Paper";
 import MediaCard from "./../../components/controls/MediaCard";
 import * as userService from "../../services/userService";
 
+
+
 const initialFValues = {
   id: 0,
   name: "",
@@ -16,6 +18,42 @@ const initialFValues = {
   age: "",
   relocation: true,
 };
+
+function PhoneMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[
+        "+",
+        /\d/,
+        " ",
+        "(",
+        /[1-9]/,
+        /\d/,
+        /\d/,
+        ")",
+        " ",
+        /\d/,
+        /\d/,
+        " ",
+        /\d/,
+        /\d/,
+        " ",
+        /\d/,
+        /\d/
+      ]}
+      placeholderChar={"\u2000"}
+      showMask
+    />
+  );
+}
+
+
 
 export default function UsersForm(props) {
 
@@ -32,7 +70,6 @@ const validate = (fieldValues = values) => {
     });
     if (fieldValues === values) return Object.values(temp).every((x) => x === "");
   }
-
 
   const {
     values,
@@ -57,17 +94,6 @@ const validate = (fieldValues = values) => {
       });
   }, [recordForEdit, setValues, setErrors]);
 
-  const PhoneInput = ({ inputRef, ...props }) => (
-    <MaskedInput
-      {...props}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={['+', /\d/, ' ', '(', /[1-9]/, /\d/, /\d/, ')',
-        ' ', /\d/, /\d/, ' ', /\d/, /\d/, ' ', /\d/, /\d/,]}
-      placeholderChar={'\u2000'}
-    />
-  );
 
   return (
     <div>
@@ -100,10 +126,10 @@ const validate = (fieldValues = values) => {
                 label="Phone"
                 name="phone"
                 value={values.phone}
+                
                 onChange={handleInputChange}
-                type="phone"
                 error={errors.phone}
-                InputProps={{ inputComponent: PhoneInput }}
+               InputProps={{ inputComponent: PhoneMaskCustom }}
               />
 
               <Controls.Input
